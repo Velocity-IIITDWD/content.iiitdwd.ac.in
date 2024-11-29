@@ -13,8 +13,6 @@ export const facultyType = defineType({
       title: "Faculty ID",
       type: "string",
       description: "Generated based on Faculty Name. No need to edit.",
-      // readOnly: true,
-      
       initialValue: 'id',
       components: {
         input: FacultyIdInput,
@@ -113,12 +111,12 @@ export const facultyType = defineType({
           type: "document",
           fields: [
             defineField({
-              name: "profileText",
+              name: "profile_text",
               type: "string",
               title: "Profile Text",
             }),
             defineField({
-              name: "interestAreas",
+              name: "interest_areas",
               type: "array",
               title: "Interest Areas",
               of: [
