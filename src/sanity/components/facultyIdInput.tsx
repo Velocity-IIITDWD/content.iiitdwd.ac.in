@@ -1,4 +1,5 @@
-import { ChangeEvent, forwardRef, useEffect, useMemo } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { forwardRef, useEffect, useMemo } from "react";
 import { PatchEvent, set, StringInputProps, unset, useFormValue } from "sanity";
 import { TextInput } from "@sanity/ui";
 
@@ -47,5 +48,7 @@ const FacultyIdInput = forwardRef<HTMLInputElement, StringInputProps>(
     );
   }
 );
+
+FacultyIdInput.displayName = "FacultyIdInput";
 
 export default FacultyIdInput;
