@@ -4,12 +4,12 @@ import { type SchemaTypeDefinition } from 'sanity'
 import {facultyType} from './facultyType'
 import { About, coreValues, directorMessage, mission } from './About'
 import { courseStructure,
-   creditStructure } from './Academics'
+    creditStructure } from './Academics'
 import { dateStructure,
-   descriptionStructure,
-   linksStructure,
-   linkStructure,
-   seatStructure } from './Admission'
+    descriptionStructure,
+    linksStructure,
+    linkStructure,
+    seatStructure } from './Admission'
 import { announcementType } from './Announcement'
 import { chairperson } from './ChairPerson'
 import { boardOfGovernor } from './BoardOfGovernor'
