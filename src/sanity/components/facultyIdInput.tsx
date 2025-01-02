@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { forwardRef, useEffect, useMemo } from "react";
 import { PatchEvent, set, StringInputProps, unset, useFormValue } from "sanity";
