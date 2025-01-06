@@ -1,11 +1,10 @@
 import { defineField, defineType } from "sanity";
-import { Link, UserPenIcon, Users2Icon } from "lucide-react";
+import { Link, Users2Icon } from "lucide-react";
 
 export const profile = defineType({
     name: "profile",
     title: "Profile",
     type: "document",
-    icon: UserPenIcon,
     fields: [
         defineField({
             name: "title",
