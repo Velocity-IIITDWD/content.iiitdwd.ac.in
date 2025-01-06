@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { Users2Icon } from "lucide-react";
+import { User2 } from "lucide-react";
 
 export const senate = defineType({
   name: "senate",
   title: "Senate",
   type: "document",
-  icon: Users2Icon,
+  icon: User2,
   fields: [
     defineField({
       name: "title",
@@ -48,3 +48,29 @@ export const senate = defineType({
   ],
 });
 
+export const profile = defineType({
+  name: "profile",
+  title: "Profile",
+  type: "document",
+  fields: [
+    defineField({
+      name: "title",
+      title: "Title",
+      type: "string",
+      description: "Profile title",
+    }),
+    defineField({
+      name: "content",
+      title: "Content",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Content of the profile",
+    }),
+    defineField({
+      name: "imageURL",
+      title: "Image URL",
+      type: "string",
+      description: "URL of the profile image",
+    }),
+  ],
+});
