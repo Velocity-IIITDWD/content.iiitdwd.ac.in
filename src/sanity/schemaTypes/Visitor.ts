@@ -16,7 +16,7 @@ export const visitor = defineType({
             name: "profiles",
             title: "Profiles",
             type: "reference",
-            to: [{ type: "profileGroup" }], // Corrected the reference to match the `profileGroup` type
+            to: [{ type: "profileGroup" }],
         }),
     ],
 });

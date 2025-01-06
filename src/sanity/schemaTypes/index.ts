@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { type SchemaTypeDefinition } from 'sanity'
-
 import {facultyType} from './facultyType'
 import { About } from './About'
 import { courseStructure,

@@ -1,7 +1,6 @@
 import { Link2Icon } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
-// Description Structure
 export const descriptionStructure = defineType({
   name: 'descriptionStructure',
   title: 'Description Structure',
@@ -25,7 +24,6 @@ export const descriptionStructure = defineType({
   ],
 });
 
-// Links Structure
 export const linksStructure = defineType({
   name: 'linksStructure',
   title: 'Links Structure',
@@ -51,7 +49,6 @@ export const linksStructure = defineType({
   ],
 });
 
-// Seat Structure
 export const seatStructure = defineType({
   name: 'seatStructure',
   title: 'Seat Structure',
