@@ -1,54 +1,5 @@
-import { Link, Link2Icon } from "lucide-react";
+import { Link2Icon } from "lucide-react";
 import { defineField, defineType } from "sanity";
-
-// Date Structure
-export const dateStructure = defineType({
-  name: 'dateStructure',
-  title: 'Date Structure',
-  type: 'document',
-  fields: [
-    defineField({
-      name: 'id',
-      title: 'ID',
-      type: 'number',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'date',
-      title: 'Date',
-      type: 'string',
-    }),
-  ],
-});
-
-// Link Structure
-export const linkStructure = defineType({
-  name: 'linkStructure',
-  title: 'Link Structure',
-  type: 'document',
-  icon: Link, 
-  fields: [
-    defineField({
-      name: 'id',
-      title: 'ID',
-      type: 'number',
-    }),
-    defineField({
-      name: 'link',
-      title: 'Link',
-      type: 'string',
-    }),
-    defineField({
-      name: 'displayText',
-      title: 'Display Text',
-      type: 'string',
-    }),
-  ],
-});
 
 // Description Structure
 export const descriptionStructure = defineType({

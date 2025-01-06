@@ -1,67 +1,6 @@
 import { SearchSlashIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
-export const directorMessage = defineType({
-  name: "directorMessage",
-  title: "Director Message",
-  type: "document",
-  fields: [
-    defineField({
-      name: "heading",
-      title: "Heading",
-      type: "string",
-    }),
-    defineField({
-      name: "text1",
-      title: "Text 1",
-      type: "string",
-    }),
-    defineField({
-      name: "text2",
-      title: "Text 2",
-      type: "string",
-    }),
-    defineField({
-      name: "text3",
-      title: "Text 3",
-      type: "string",
-    }),
-  ],
-});
-
-export const coreValues = defineType({
-  name: "coreValues",
-  title: "Core Values",
-  type: "document",
-  fields: [
-    defineField({
-      name: "id",
-      title: "ID",
-      type: "string",
-    }),
-    defineField({
-      name: "text",
-      title: "Text",
-      type: "string",
-    }),
-  ],
-});
-
-export const mission = defineType({
-  name: "mission",
-  title: "Mission",
-  description: "Mission Regarding The Topic",
-  type: "document",
-  fields: [
-    defineField({
-      name: "missionText",
-      title: "Mission Text",
-      type: "string",
-    }),
-  ],
-});
-
-// Define the About Schema
 export const About = defineType({
   name: "about",
   title: "About",

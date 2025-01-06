@@ -2,13 +2,12 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
 import {facultyType} from './facultyType'
-import { About, coreValues, directorMessage, mission } from './About'
+import { About } from './About'
 import { courseStructure,
     creditStructure } from './Academics'
-import { dateStructure,
+import { 
     descriptionStructure,
     linksStructure,
-    linkStructure,
     seatStructure } from './Admission'
 import { announcementType } from './Announcement'
 import { chairperson } from './ChairPerson'
@@ -17,8 +16,7 @@ import { former } from './Former'
 import { senate } from './Senate'
 import { staff } from './Staff'
 import { visitor } from './Visitor'
-import { profile, profileGroup } from './Profile'
-import { img } from './Image'
+import { coreValues, directorMessage, mission, dateStructure,linkStructure,profile, profileGroup, img } from './CommonSchema'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
