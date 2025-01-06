@@ -47,30 +47,3 @@ export const staff = defineType({
     }),
   ],
 });
-
-export const profile = defineType({
-  name: "profile",
-  title: "Profile",
-  type: "document",
-  fields: [
-    defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      description: "Profile title",
-    }),
-    defineField({
-      name: "content",
-      title: "Content",
-      type: "array",
-      of: [{ type: "string" }],
-      description: "Content of the profile",
-    }),
-    defineField({
-      name: "imageURL",
-      title: "Image URL",
-      type: "string",
-      description: "URL of the profile image",
-    }),
-  ],
-});
