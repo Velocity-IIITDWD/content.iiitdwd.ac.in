@@ -16,9 +16,7 @@ import { coreValues, directorMessage, mission, dateStructure,profile, profileGro
 import { cseDetail } from './CSEAcademics'
 import { eceDetail } from './ECEAcademics'
 import { dsaiDetail } from './DSAIAcademics'
-import { cseCredit } from './CreditCSE'
-import { eceCredit } from './CreditECE'
-import { dsaiCredit } from './CreditDSAI'
+import { Credit } from './Credits'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -44,8 +42,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     cseDetail,
     eceDetail,
     dsaiDetail,
-    cseCredit,
-    eceCredit,
-    dsaiCredit,
+    Credit,
   ],
 }
