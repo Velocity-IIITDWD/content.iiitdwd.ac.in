@@ -1,5 +1,6 @@
 import { ComputerIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
+import CreditIdInput from "../components/creditIdInput";
 
 export const Credit = defineType({
     name: 'Credit',
@@ -11,7 +12,11 @@ export const Credit = defineType({
             name: "id",
             title: "ID",
             type: "string",
-            description: "ID of the Course"
+            description: "Generated based on Faculty Name. No need to edit.",
+            initialValue: 'id',
+            components: {
+              input: CreditIdInput,
+            },
         }),
         defineField({
             name: 'Degree',

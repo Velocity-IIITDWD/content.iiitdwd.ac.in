@@ -71,7 +71,7 @@ export const facultyType = defineType({
               options: {
                 hotspot: true,
               },
-              validation: Rule => Rule.required().error('An image is required')
+              validation: Rule => Rule.required().error('An image is required') // Todo - fix its working
             }),
             defineField({
               name: "PhD",
