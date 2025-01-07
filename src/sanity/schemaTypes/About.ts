@@ -1,8 +1,6 @@
 import { SearchSlashIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
-
-// About Not Done 
 export const About = defineType({
   name: "about",
   title: "About",
@@ -63,7 +61,7 @@ export const About = defineType({
       name: "image_prof",
       title: "Image Prof",
       description: "Image related to the topic",
-      type: "object",
+      type: "object", // Explicitly defining it as an object
       fields: [
         defineField({
           name: "name",
@@ -128,7 +126,7 @@ export const About = defineType({
     defineField({
       name: "directorMessage",
       title: "Director Message",
-      type: "array",
+      type: "array", // Explicitly defining it as an array of objects
       of: [
         {
           type: "object",

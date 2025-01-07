@@ -12,7 +12,6 @@ import { former } from './Former'
 import { senate } from './Senate'
 import { staff } from './Staff'
 import { visitor } from './Visitor'
-import { coreValues, directorMessage, mission, dateStructure,profile, profileGroup, img } from './CommonSchema'
 import { cseDetail } from './CSEAcademics'
 import { eceDetail } from './ECEAcademics'
 import { dsaiDetail } from './DSAIAcademics'
@@ -21,8 +20,6 @@ import { Credit } from './Credits'
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     facultyType,
-    profile,
-    profileGroup,
     senate,
     staff,
     chairPerson,
@@ -32,12 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     announcementType,
     linksStructure,
     seatStructure,
-    dateStructure,
     descriptionStructure,
-    img,
-    mission,
-    coreValues,
-    directorMessage,
     About,
     cseDetail,
     eceDetail,
