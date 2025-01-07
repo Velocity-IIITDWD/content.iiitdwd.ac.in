@@ -1,7 +1,7 @@
 import { defineField, defineType } from "sanity";
 import { UsersIcon } from "lucide-react";
 
-export const visitor = defineType({
+export const former = defineType({
   name: "former",
   title: "Former",
   type: "document",

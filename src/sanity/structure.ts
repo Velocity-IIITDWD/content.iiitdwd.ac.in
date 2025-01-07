@@ -1,6 +1,6 @@
 import type {ListItemBuilder, StructureResolver} from 'sanity/structure'
 
-const hiddenSchemas = ['profile', 'profileGroup', 'dateStructure' ,'img', 'linkStructure', 'coreValues', 'directorMessage', 'mission' ];
+const hiddenSchemas = ['profile', 'profileGroup', 'dateStructure' ,'img', 'coreValues', 'directorMessage', 'mission' ];
 const schemaFilter = (v: ListItemBuilder) => !hiddenSchemas.includes(v.getId() ?? '')
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet

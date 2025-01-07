@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { Link, Users2Icon } from "lucide-react";
+import { Users2Icon } from "lucide-react";
 
 export const profile = defineType({
     name: "profile",
@@ -74,29 +74,6 @@ export const img = defineType(
     }
 )
 
-export const linkStructure = defineType({
-    name: 'linkStructure',
-    title: 'Link Structure',
-    type: 'document',
-    icon: Link, 
-    fields: [
-      defineField({
-        name: 'id',
-        title: 'ID',
-        type: 'number',
-      }),
-      defineField({
-        name: 'link',
-        title: 'Link',
-        type: 'string',
-      }),
-      defineField({
-        name: 'displayText',
-        title: 'Display Text',
-        type: 'string',
-      }),
-    ],
-  });
 
   export const dateStructure = defineType({
     name: 'dateStructure',

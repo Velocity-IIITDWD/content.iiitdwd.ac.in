@@ -1,6 +1,9 @@
 import { BookAIcon, BookCopyIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
+
+
+
 export const creditStructure = defineType({
   name: 'creditStructure',
   title: 'Credit Structure',

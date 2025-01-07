@@ -28,7 +28,7 @@ export const linksStructure = defineType({
   name: 'linksStructure',
   title: 'Links Structure',
   type: 'document',
-  icon : Link2Icon,
+  icon: Link2Icon,
   fields: [
     defineField({
       name: 'id',
@@ -44,11 +44,33 @@ export const linksStructure = defineType({
       name: 'links',
       title: 'Links',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'linkStructure' }] }],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'id',
+              title: 'ID',
+              type: 'number',
+            },
+            {
+              name: 'link',
+              title: 'Link',
+              type: 'string',
+            },
+            {
+              name: 'displayText',
+              title: 'Display Text',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     }),
   ],
 });
 
+// Seat Structure Not Done
 export const seatStructure = defineType({
   name: 'seatStructure',
   title: 'Seat Structure',

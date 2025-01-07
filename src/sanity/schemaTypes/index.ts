@@ -8,13 +8,13 @@ import {
     linksStructure,
     seatStructure } from './Admission'
 import { announcementType } from './Announcement'
-import { chairperson } from './ChairPerson'
+import { chairPerson } from './ChairPerson'
 import { boardOfGovernor } from './BoardOfGovernor'
 import { former } from './Former'
 import { senate } from './Senate'
 import { staff } from './Staff'
 import { visitor } from './Visitor'
-import { coreValues, directorMessage, mission, dateStructure,linkStructure,profile, profileGroup, img } from './CommonSchema'
+import { coreValues, directorMessage, mission, dateStructure,profile, profileGroup, img } from './CommonSchema'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -25,12 +25,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     profileGroup,
     senate,
     staff,
-    chairperson,
+    chairPerson,
     former,
     visitor,
     boardOfGovernor,
     announcementType,
-    linkStructure,
     linksStructure,
     seatStructure,
     dateStructure,
