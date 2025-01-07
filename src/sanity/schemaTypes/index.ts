@@ -1,8 +1,6 @@
 import { type SchemaTypeDefinition } from 'sanity'
 import {facultyType} from './facultyType'
 import { About } from './About'
-import { courseStructure,
-    creditStructure } from './Academics'
 import { 
     descriptionStructure,
     linksStructure,
@@ -15,12 +13,16 @@ import { senate } from './Senate'
 import { staff } from './Staff'
 import { visitor } from './Visitor'
 import { coreValues, directorMessage, mission, dateStructure,profile, profileGroup, img } from './CommonSchema'
+import { cseDetail } from './CSEAcademics'
+import { eceDetail } from './ECEAcademics'
+import { dsaiDetail } from './DSAIAcademics'
+import { cseCredit } from './CreditCSE'
+import { eceCredit } from './CreditECE'
+import { dsaiCredit } from './CreditDSAI'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     facultyType,
-    creditStructure,
-    courseStructure,
     profile,
     profileGroup,
     senate,
@@ -39,5 +41,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     coreValues,
     directorMessage,
     About,
+    cseDetail,
+    eceDetail,
+    dsaiDetail,
+    cseCredit,
+    eceCredit,
+    dsaiCredit,
   ],
 }
