@@ -1,56 +1,6 @@
-import { Link, Link2Icon } from "lucide-react";
+import { Link2Icon } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
-// Date Structure
-export const dateStructure = defineType({
-  name: 'dateStructure',
-  title: 'Date Structure',
-  type: 'document',
-  fields: [
-    defineField({
-      name: 'id',
-      title: 'ID',
-      type: 'number',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'date',
-      title: 'Date',
-      type: 'string',
-    }),
-  ],
-});
-
-// Link Structure
-export const linkStructure = defineType({
-  name: 'linkStructure',
-  title: 'Link Structure',
-  type: 'document',
-  icon: Link, 
-  fields: [
-    defineField({
-      name: 'id',
-      title: 'ID',
-      type: 'number',
-    }),
-    defineField({
-      name: 'link',
-      title: 'Link',
-      type: 'string',
-    }),
-    defineField({
-      name: 'displayText',
-      title: 'Display Text',
-      type: 'string',
-    }),
-  ],
-});
-
-// Description Structure
 export const descriptionStructure = defineType({
   name: 'descriptionStructure',
   title: 'Description Structure',
@@ -74,12 +24,11 @@ export const descriptionStructure = defineType({
   ],
 });
 
-// Links Structure
 export const linksStructure = defineType({
   name: 'linksStructure',
   title: 'Links Structure',
   type: 'document',
-  icon : Link2Icon,
+  icon: Link2Icon,
   fields: [
     defineField({
       name: 'id',
@@ -95,12 +44,33 @@ export const linksStructure = defineType({
       name: 'links',
       title: 'Links',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'linkStructure' }] }],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'id',
+              title: 'ID',
+              type: 'number',
+            },
+            {
+              name: 'link',
+              title: 'Link',
+              type: 'string',
+            },
+            {
+              name: 'displayText',
+              title: 'Display Text',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     }),
   ],
 });
 
-// Seat Structure
+// Seat Structure Not Done
 export const seatStructure = defineType({
   name: 'seatStructure',
   title: 'Seat Structure',

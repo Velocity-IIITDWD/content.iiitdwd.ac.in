@@ -1,48 +1,39 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { type SchemaTypeDefinition } from 'sanity'
-
 import {facultyType} from './facultyType'
-import { About, coreValues, directorMessage, mission } from './About'
-import { courseStructure,
-    creditStructure } from './Academics'
-import { dateStructure,
+import { About } from './About'
+import { 
     descriptionStructure,
     linksStructure,
-    linkStructure,
     seatStructure } from './Admission'
 import { announcementType } from './Announcement'
-import { chairperson } from './ChairPerson'
+import { chairPerson } from './ChairPerson'
 import { boardOfGovernor } from './BoardOfGovernor'
 import { former } from './Former'
 import { senate } from './Senate'
 import { staff } from './Staff'
 import { visitor } from './Visitor'
-import { profile, profileGroup } from './Profile'
-import { img } from './Image'
+import { cseDetail } from './CSEAcademics'
+import { eceDetail } from './ECEAcademics'
+import { dsaiDetail } from './DSAIAcademics'
+import { Credit } from './Credits'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     facultyType,
-    creditStructure,
-    courseStructure,
-    profile,
-    profileGroup,
     senate,
     staff,
-    chairperson,
+    chairPerson,
     former,
     visitor,
     boardOfGovernor,
     announcementType,
-    linkStructure,
     linksStructure,
     seatStructure,
-    dateStructure,
     descriptionStructure,
-    img,
-    mission,
-    coreValues,
-    directorMessage,
     About,
+    cseDetail,
+    eceDetail,
+    dsaiDetail,
+    Credit,
   ],
 }
