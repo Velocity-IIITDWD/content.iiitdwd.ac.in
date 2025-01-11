@@ -1,10 +1,10 @@
-import { Box, useToast, Spinner } from "@sanity/ui";
-import { NavbarProps } from "sanity";
-import { useState } from "react";
-import Image from "next/image";
-import { redirect, RedirectType } from "next/navigation";
-import { dispatchWorkflow } from "@/app/actions/github";
-import clsx from "clsx";
+import { Box, useToast, Spinner } from '@sanity/ui';
+import { NavbarProps } from 'sanity';
+import { useState } from 'react';
+import Image from 'next/image';
+import { redirect, RedirectType } from 'next/navigation';
+import { dispatchWorkflow } from '@/app/actions/github';
+import clsx from 'clsx';
 
 export function CustomNavbar(props: NavbarProps) {
   const { renderDefault } = props;
@@ -16,16 +16,24 @@ export function CustomNavbar(props: NavbarProps) {
     try {
       await dispatchWorkflow();
       toast.push({
-        status: "success",
-        title: "Deployment Triggered",
-        description: "Your site is being deployed!",
+        status: 'success',
+        title: 'Deployment Triggered',
+        description: 'Your site is being deployed!',
       });
     } catch (error: unknown) {
-      toast.push({
-        status: "error",
-        title: "Deployment Failed",
-        description: "Server error",
-      });
+      if (error instanceof Error) {
+        toast.push({
+          status: 'error',
+          title: 'Deployment Failed',
+          description: error.message || 'Server error',
+        });
+      } else {
+        toast.push({
+          status: 'error',
+          title: 'Deployment Failed',
+          description: 'An unknown error occurred',
+        });
+      }
     }
   };
 
@@ -38,7 +46,7 @@ export function CustomNavbar(props: NavbarProps) {
     setTimeLeft(expectedTime);
 
     setInterval(() => {
-      setTimeLeft(prev => prev - 1);
+      setTimeLeft((prev) => prev - 1);
     }, 1000);
 
     setTimeout(() => {
@@ -48,7 +56,7 @@ export function CustomNavbar(props: NavbarProps) {
 
   const checkStatus = () => {
     redirect(
-      "https://github.com/velocity-iiitdwd/iiitdwd.ac.in/actions/",
+      'https://github.com/velocity-iiitdwd/iiitdwd.ac.in/actions/',
       RedirectType.push
     );
   };
@@ -60,10 +68,10 @@ export function CustomNavbar(props: NavbarProps) {
           onClick={handleDeploy}
           disabled={isDeploying}
           className={clsx(
-            "flex items-center justify-center px-4 py-1 text-white bg-slate-800 rounded-md transition duration-200",
+            'flex items-center justify-center px-4 py-1 text-white bg-slate-800 rounded-md transition duration-200',
             isDeploying
-              ? "bg-slate-600 cursor-not-allowed"
-              : "hover:bg-slate-700"
+              ? 'bg-slate-600 cursor-not-allowed'
+              : 'hover:bg-slate-700'
           )}
         >
           {isDeploying ? (
@@ -72,7 +80,7 @@ export function CustomNavbar(props: NavbarProps) {
               <span className="ml-2">Deploying... {timeLeft} sec</span>
             </>
           ) : (
-            "Deploy"
+            'Deploy'
           )}
         </button>
         <button
