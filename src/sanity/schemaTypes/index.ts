@@ -24,6 +24,11 @@ import { facilities } from './Facilities';
 import { krcData } from './KrcData';
 import { krcDataTel } from './KrcDataTel';
 import { krcDataTelFull } from './KrcDataTelFull';
+import { Jobs } from './Jobs';
+import { Member, FacultyAdvisor, Team, Issues } from './Magazine';
+import { Club } from './Members';
+import { NIRF } from './Nirf';
+import { Tender } from './Tenders';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -50,5 +55,14 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     eceDetail,
     dsaiDetail,
     Credit,
+
+    Jobs,
+    Member,
+    FacultyAdvisor,
+    Team,
+    Issues,
+    Club,
+    NIRF,
+    Tender,
   ],
 };
