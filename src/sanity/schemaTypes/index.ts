@@ -17,6 +17,13 @@ import { cseDetail } from './CSEAcademics';
 import { eceDetail } from './ECEAcademics';
 import { dsaiDetail } from './DSAIAcademics';
 import { Credit } from './Credits';
+import { research } from './Research';
+import { formerBoardOfGovernor } from './FormerBoardOfGovernor';
+import { campusData } from './CampusData';
+import { facilities } from './Facilities';
+import { krcData } from './KrcData';
+import { krcDataTel } from './KrcDataTel';
+import { krcDataTelFull } from './KrcDataTelFull';
 import { Jobs } from './Jobs';
 import { Member, FacultyAdvisor, Team, Issues } from './Magazine';
 import { Club } from './Members';
@@ -25,6 +32,12 @@ import { Tender } from './Tenders';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    research,
+    campusData,
+    facilities,
+    krcData,
+    krcDataTel,
+    krcDataTelFull,
     facultyType,
     senate,
     staff,
@@ -32,6 +45,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     former,
     visitor,
     boardOfGovernor,
+    formerBoardOfGovernor,
     announcementType,
     linksStructure,
     seatStructure,
@@ -42,7 +56,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     dsaiDetail,
     Credit,
 
-    // Updated be me
     Jobs,
     Member,
     FacultyAdvisor,
