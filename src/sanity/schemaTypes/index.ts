@@ -1,34 +1,34 @@
 import { type SchemaTypeDefinition } from 'sanity';
-import { facultyType } from './facultyType';
 import { About } from './About';
 import {
   descriptionStructure,
   linksStructure,
   seatStructure,
 } from './Admission';
-import { announcementType } from './Announcement';
-import { chairPerson } from './ChairPerson';
-import { boardOfGovernor } from './BoardOfGovernor';
-import { former } from './Former';
-import { senate } from './Senate';
-import { staff } from './Staff';
-import { visitor } from './Visitor';
+import { boardOfGovernor } from './governanceAndAdministration/BoardOfGovernor';
 import { cseDetail } from './CSEAcademics';
-import { eceDetail } from './ECEAcademics';
-import { dsaiDetail } from './DSAIAcademics';
-import { Credit } from './Credits';
-import { research } from './Research';
-import { formerBoardOfGovernor } from './FormerBoardOfGovernor';
 import { campusData } from './CampusData';
+import { chairPerson } from './ChairPerson';
+import { Credit } from './Credits';
+import { dsaiDetail } from './DSAIAcademics';
+import { eceDetail } from './ECEAcademics';
 import { facilities } from './Facilities';
+import { former } from './Former';
+import { formerBoardOfGovernor } from './FormerBoardOfGovernor';
+import { Jobs } from './Jobs';
 import { krcData } from './KrcData';
 import { krcDataTel } from './KrcDataTel';
 import { krcDataTelFull } from './KrcDataTelFull';
-import { Jobs } from './Jobs';
-import { Member, FacultyAdvisor, Team, Issues } from './Magazine';
+import { FacultyAdvisor, Issues, Member, Team } from './Magazine';
 import { Club } from './Members';
-import { NIRF } from './Nirf';
-import { Tender } from './Tenders';
+import { NIRF } from './reportsAndRankings/Nirf';
+import { research } from './Research';
+import { senate } from './governanceAndAdministration/Senate';
+import { staff } from './Staff';
+import { visitor } from './Visitor';
+import { facultyType } from './facultyType';
+import { announcementType } from './newsAndUpdates/Announcement';
+import { Tender } from './newsAndUpdates/Tenders';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -55,7 +55,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     eceDetail,
     dsaiDetail,
     Credit,
-
     Jobs,
     Member,
     FacultyAdvisor,
