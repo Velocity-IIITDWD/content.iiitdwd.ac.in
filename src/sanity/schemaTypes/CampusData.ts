@@ -19,9 +19,9 @@ export const campusData = defineType({
       description: 'Link where the card will redirect when clicked',
     }),
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: 'imageUrl',
+      title: 'Image Url',
+      type: 'string',
       description: 'Image to display on the card',
     }),
   ],

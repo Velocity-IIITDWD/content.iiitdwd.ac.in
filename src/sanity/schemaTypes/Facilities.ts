@@ -28,7 +28,7 @@ export const facilities = defineType({
     defineField({
       name: 'imageUrl',
       title: 'Image URL',
-      type: 'image',
+      type: 'string',
       description: 'The image associated with the facility.',
     }),
   ],

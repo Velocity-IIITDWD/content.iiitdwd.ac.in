@@ -17,7 +17,7 @@ import { cseDetail } from './CSEAcademics';
 import { eceDetail } from './ECEAcademics';
 import { dsaiDetail } from './DSAIAcademics';
 import { Credit } from './Credits';
-import { research } from './Research';
+import { advertisement, research } from './Research';
 import { formerBoardOfGovernor } from './FormerBoardOfGovernor';
 import { campusData } from './CampusData';
 import { facilities } from './Facilities';
@@ -28,6 +28,7 @@ import { krcDataTelFull } from './KrcDataTelFull';
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     research,
+    advertisement,
     campusData,
     facilities,
     krcData,
