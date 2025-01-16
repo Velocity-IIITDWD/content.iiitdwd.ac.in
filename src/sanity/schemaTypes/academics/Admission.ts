@@ -1,5 +1,5 @@
-import { Link2Icon } from "lucide-react";
-import { defineField, defineType } from "sanity";
+import { Link2Icon } from 'lucide-react';
+import { defineField, defineType } from 'sanity';
 
 export const descriptionStructure = defineType({
   name: 'descriptionStructure',
