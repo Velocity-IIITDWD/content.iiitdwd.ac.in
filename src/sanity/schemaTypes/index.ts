@@ -22,7 +22,7 @@ import { krcDataTelFull } from './KrcDataTelFull';
 import { FacultyAdvisor, Issues, Member, Team } from './Magazine';
 import { Club } from './Members';
 import { NIRF } from './reportsAndRankings/Nirf';
-import { research } from './Research';
+import { research, advertisement } from './Research';
 import { senate } from './governanceAndAdministration/Senate';
 import { staff } from './academics/Staff';
 import { visitor } from './Visitor';
@@ -38,6 +38,7 @@ import { ContactCategory, ContactData, ContactInf } from './ContactInfo';
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     research,
+    advertisement,
     campusData,
     facilities,
     krcData,

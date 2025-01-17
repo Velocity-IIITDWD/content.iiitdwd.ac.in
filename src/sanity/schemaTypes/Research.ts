@@ -6,20 +6,76 @@ export const research = defineType({
   type: 'document',
   fields: [
     defineField({
-      title: 'Title',
       name: 'title',
+      title: 'Title',
       type: 'string',
+      description: 'Title of the profile group',
     }),
     defineField({
-      title: 'Image Url',
-      name: 'imageUrl',
-      type: 'string',
-    }),
-    defineField({
-      title: 'More Details',
-      name: 'content',
+      name: 'profiles',
+      title: 'Profiles',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Profile Title',
+              type: 'string',
+              description: 'Title of the profile',
+            }),
+            defineField({
+              name: 'content',
+              title: 'Content',
+              type: 'array',
+              of: [{ type: 'string' }],
+              description: 'Content of the profile',
+            }),
+            defineField({
+              name: 'imageURL',
+              title: 'Image URL',
+              type: 'string',
+              description: 'URL of the profile image',
+            }),
+          ],
+        },
+      ],
+    }),
+  ],
+});
+
+export const advertisement = defineType({
+  name: 'advertisement',
+  type: 'document',
+  title: 'Research Advertisement',
+  fields: [
+    defineField({
+      name: 'time',
+      type: 'string',
+      title: 'Time',
+      description: 'The time period of the advertisement.',
+    }),
+    defineField({
+      name: 'lastDate',
+      type: 'date',
+      title: 'Last Date',
+      description: 'The last date for the advertisement.',
+      options: {
+        dateFormat: 'YYYY-MM-DD',
+      },
+    }),
+    defineField({
+      name: 'generalInstructions',
+      type: 'url',
+      title: 'General Instructions',
+      description: 'URL to the general instructions document.',
+    }),
+    defineField({
+      name: 'applicationForm',
+      type: 'url',
+      title: 'Application Form',
+      description: 'URL to the application form.',
     }),
   ],
 });
