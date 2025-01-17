@@ -43,6 +43,34 @@ export const structure: StructureResolver = (S) =>
                 .child(S.documentTypeList('senate').title('Senate')),
             ])
         ),
+      S.listItem()
+        .title('Academics')
+        .child(
+          S.list()
+            .title('Academics Documents')
+            .items([
+              S.listItem()
+                .title('Admission')
+                .child(
+                  S.list()
+                    .title('Admission')
+                    .items([
+                      S.listItem()
+                        .title('Description')
+                        .child(S.documentTypeList('descriptionStructure')),
+                      S.listItem()
+                        .title('Links')
+                        .child(S.documentTypeList('linksStructure')),
+                      S.listItem()
+                        .title('Seats')
+                        .child(S.documentTypeList('seatStructure')),
+                    ])
+                ),
+              S.listItem()
+                .title('Faculty')
+                .child(S.documentTypeList('faculty').title('Faculty')),
+            ])
+        ),
       ...S.documentTypeListItems().filter(schemaFilter),
       S.divider(),
     ]);
