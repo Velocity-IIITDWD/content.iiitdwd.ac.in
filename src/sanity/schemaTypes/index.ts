@@ -29,6 +29,11 @@ import { visitor } from './Visitor';
 import { Faculty } from './academics/Faculty';
 import { announcementType } from './newsAndUpdates/Announcement';
 import { Tender } from './newsAndUpdates/Tenders';
+import { AnnualReport } from './Annual_reports';
+import { Gallery } from './Gallery';
+import { EventInfo } from './Events';
+import { MainCarouselImage, ProgramCards, ProgramsType } from './HomePage';
+import { ContactCategory, ContactData, ContactInf } from './ContactInfo';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -63,5 +68,17 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     Club,
     NIRF,
     Tender,
+
+    AnnualReport,
+
+    ContactInf,
+    ContactCategory,
+    ContactData,
+
+    EventInfo,
+    Gallery,
+    MainCarouselImage,
+    ProgramCards,
+    ProgramsType,
   ],
 };
