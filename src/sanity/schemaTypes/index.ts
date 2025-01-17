@@ -4,7 +4,7 @@ import {
   descriptionStructure,
   linksStructure,
   seatStructure,
-} from './Admission';
+} from './academics/Admission';
 import { boardOfGovernor } from './governanceAndAdministration/BoardOfGovernor';
 import { cseDetail } from './CSEAcademics';
 import { campusData } from './CampusData';
@@ -24,9 +24,9 @@ import { Club } from './Members';
 import { NIRF } from './reportsAndRankings/Nirf';
 import { research } from './Research';
 import { senate } from './governanceAndAdministration/Senate';
-import { staff } from './Staff';
+import { staff } from './academics/Staff';
 import { visitor } from './Visitor';
-import { facultyType } from './facultyType';
+import { Faculty } from './academics/Faculty';
 import { announcementType } from './newsAndUpdates/Announcement';
 import { Tender } from './newsAndUpdates/Tenders';
 import { AnnualReport } from './Annual_reports';
@@ -43,7 +43,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     krcData,
     krcDataTel,
     krcDataTelFull,
-    facultyType,
+    Faculty,
     senate,
     staff,
     chairPerson,
