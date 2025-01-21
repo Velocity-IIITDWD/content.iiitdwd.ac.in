@@ -5,6 +5,15 @@ import Image from 'next/image';
 import { redirect, RedirectType } from 'next/navigation';
 import { dispatchWorkflow } from '@/app/actions/github';
 import clsx from 'clsx';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import FTPComponent from '@/components/FTPComponent';
 
 export function CustomNavbar(props: NavbarProps) {
   const { renderDefault } = props;
@@ -63,7 +72,8 @@ export function CustomNavbar(props: NavbarProps) {
 
   return (
     <div>
-      <div className="flex justify-center items-center gap-2 p-2 bg-slate-950">
+      <div className="flex justify-center items-center gap-3 p-2 bg-slate-950">
+        <FTPDialogTrigger />
         <button
           onClick={handleDeploy}
           disabled={isDeploying}
@@ -93,5 +103,26 @@ export function CustomNavbar(props: NavbarProps) {
       </div>
       <Box flex={1}>{renderDefault(props)}</Box>
     </div>
+  );
+}
+
+function FTPDialogTrigger() {
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  return (
+    <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+      <DialogTrigger asChild>
+        <button className="flex items-center justify-center px-4 py-1 text-white bg-slate-800 rounded-md transition duration-200 hover:bg-slate-700">
+          Upload Files
+        </button>
+      </DialogTrigger>
+      <DialogContent className="w-full max-w-none sm:max-w-full md:max-w-[90vw] z-[1000] border-2 border-zinc-500 max-h-[95vh] overflow-auto">
+        <DialogHeader>
+          <DialogTitle>Upload Files via FTP</DialogTitle>
+          <DialogDescription></DialogDescription>
+        </DialogHeader>
+        <FTPComponent />
+      </DialogContent>
+    </Dialog>
   );
 }
