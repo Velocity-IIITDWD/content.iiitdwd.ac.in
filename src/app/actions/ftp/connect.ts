@@ -3,6 +3,7 @@
 import { Client } from 'basic-ftp';
 
 export async function connectToFTP(loc?: string) {
+  console.count('connecting...');
   const host =
     loc !== 'images' ? process.env.FTP_HOST : process.env.IMAGES_FTP_HOST;
   const user =

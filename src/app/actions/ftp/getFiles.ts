@@ -3,7 +3,6 @@
 import { connectToFTP } from './connect';
 
 export async function GetFiles(loc: string) {
-  console.log('fetching...');
   const client = await connectToFTP(loc);
   try {
     const files = await client.list();
@@ -13,7 +12,6 @@ export async function GetFiles(loc: string) {
         size: file.size,
         modifiedAt: file.modifiedAt,
       })) ?? [];
-    console.dir({ filesData });
     return filesData;
   } catch (e) {
     console.error(e);

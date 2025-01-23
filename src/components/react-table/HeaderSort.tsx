@@ -20,13 +20,17 @@ const SortToggler = ({ type }: SortTogglerProps) => {
       <ChevronUp
         className={cn(
           'h-3 w-3',
-          type === SortType.ASC ? 'text-foreground' : 'text-muted-foreground'
+          type === SortType.ASC
+            ? 'text-foreground brightness-200'
+            : 'text-muted-foreground brightness-50'
         )}
       />
       <ChevronDown
         className={cn(
           'h-3 w-3 -mt-0.5',
-          type === SortType.DESC ? 'text-foreground' : 'text-muted-foreground'
+          type === SortType.DESC
+            ? 'text-foreground brightness-200'
+            : 'text-muted-foreground brightness-50'
         )}
       />
     </div>

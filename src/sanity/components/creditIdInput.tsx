@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { forwardRef, useEffect, useMemo } from "react";
-import { PatchEvent, set, StringInputProps, unset, useFormValue } from "sanity";
-import { TextInput } from "@sanity/ui";
+
+import { forwardRef, useEffect, useMemo } from 'react';
+import { PatchEvent, set, StringInputProps, unset, useFormValue } from 'sanity';
+import { TextInput } from '@sanity/ui';
 
 export function generateId(input: string) {
   const cleanedInput = input.trim();
@@ -14,20 +14,27 @@ export function generateId(input: string) {
     return `${prefix}${number}`;
   }
 
-  return "";
+  return '';
 }
 
 const CreditIdInput = forwardRef<HTMLInputElement, StringInputProps>(
   (props, ref) => {
     const facultyName =
-      (useFormValue(["content", "head", "name"]) as string) ?? "";
-    console.log("Faculty Name:", facultyName); // Debugging
+      (useFormValue(['content', 'head', 'name']) as string) ?? '';
 
-    const idValue = useMemo(() => generateId(facultyName) || "default-id", [
-      facultyName,
-    ]);
+    const idValue = useMemo(
+      () => generateId(facultyName) || 'default-id',
+      [facultyName]
+    );
 
-    const { schemaType, elementProps, changed, focused, renderDefault, ...filteredProps } = props;
+    const {
+      schemaType,
+      elementProps,
+      changed,
+      focused,
+      renderDefault,
+      ...filteredProps
+    } = props;
 
     const { value, onChange } = props;
 
@@ -41,16 +48,10 @@ const CreditIdInput = forwardRef<HTMLInputElement, StringInputProps>(
       }
     }, [idValue, onChange]);
 
-    return (
-      <TextInput
-        ref={ref}
-        readOnly
-        value={idValue || "Generating..."}
-      />
-    );
+    return <TextInput ref={ref} readOnly value={idValue || 'Generating...'} />;
   }
 );
 
-CreditIdInput.displayName = "CreditIdInput";
+CreditIdInput.displayName = 'CreditIdInput';
 
 export default CreditIdInput;

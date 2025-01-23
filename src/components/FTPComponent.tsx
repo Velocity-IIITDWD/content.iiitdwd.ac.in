@@ -25,15 +25,15 @@ export default function FTPComponent() {
   const [data, setData] = useState<unknown[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRenaming, setIsRenaming] = useState(false);
   const [updatedFilename, setUpdatedFilename] = useState('');
   const [loc, setLoc] = useState<'images' | 'docs'>('images');
   const [editingFilename, setEditingFilename] = useState<string | null>(null); // Track which file is being edited
 
   const toast = useToast();
 
-  // Fetch files on component mount
-  useEffect(() => {
-    async function fetchData() {
+  const fetchData = useCallback(async () => {
+    if (toast && loc) {
       try {
         setIsLoading(true);
         const result = await GetFiles(loc);
@@ -49,45 +49,51 @@ export default function FTPComponent() {
         setIsLoading(false);
       }
     }
-    fetchData();
   }, [toast, loc]);
 
-  const handleUpload = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent the default form submission
-    setIsUploading(true);
+  // Fetch files on component mount
+  useEffect(() => {
+    fetchData();
+  }, [toast, loc, fetchData]);
 
-    const formData = new FormData(event.currentTarget); // Get form data
-    const file = formData.get('file') as File;
+  const handleUpload = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault(); // Prevent the default form submission
+      setIsUploading(true);
 
-    if (!file?.name) {
-      toast.push({
-        status: 'info',
-        title: 'Error Uploading to FTP server',
-        description: 'Please attach a file',
-      });
-      setIsUploading(false);
-      return;
-    }
+      const formData = new FormData(event.currentTarget); // Get form data
+      const file = formData.get('file') as File;
 
-    try {
-      await UploadFile({ formData, loc });
-      toast.push({
-        status: 'success',
-        title: 'File uploaded successfully.',
-      });
-      // Refresh the file list after upload
-      const result = await GetFiles(loc);
-      setData(result);
-    } catch (err: unknown) {
-      toast.push({
-        status: 'error',
-        title: 'Error Uploading to FTP server',
-        description: err as string,
-      });
-    } finally {
-      setIsUploading(false);
-    }
-  };
+      if (!file?.name) {
+        toast.push({
+          status: 'info',
+          title: 'Error Uploading to FTP server',
+          description: 'Please attach a file',
+        });
+        setIsUploading(false);
+        return;
+      }
+
+      try {
+        await UploadFile({ formData, loc });
+        toast.push({
+          status: 'success',
+          title: 'File uploaded successfully.',
+        });
+        // Refresh the file list after upload
+        await fetchData();
+      } catch (err: unknown) {
+        toast.push({
+          status: 'error',
+          title: 'Error Uploading to FTP server',
+          description: err as string,
+        });
+      } finally {
+        setIsUploading(false);
+      }
+    },
+    [loc, toast, fetchData]
+  );
 
   const handleDownload = useCallback(
     async (filename: string) => {
@@ -133,8 +139,7 @@ export default function FTPComponent() {
           status: 'success',
           title: `File ${filename} deleted successfully.`,
         });
-        const result = await GetFiles(loc);
-        setData(result);
+        await fetchData();
       } catch (e) {
         const errorMsg = (e as { message: string })?.message || '';
         toast.push({
@@ -144,13 +149,12 @@ export default function FTPComponent() {
         });
       }
     },
-    [loc, toast]
+    [loc, toast, fetchData]
   );
 
   const handleRename = useCallback(
     async (oldFilename: string) => {
       if (updatedFilename === oldFilename) {
-        console.log('return');
         setEditingFilename(null); // Reset editing state
         setUpdatedFilename(''); // Clear the input field
         return;
@@ -165,13 +169,13 @@ export default function FTPComponent() {
       }
 
       try {
+        setIsRenaming(true);
         await renameFile({ oldFilename, newFilename: updatedFilename, loc });
         toast.push({
           status: 'success',
           title: `File ${oldFilename} renamed to ${updatedFilename} successfully.`,
         });
-        const result = await GetFiles(loc);
-        setData(result);
+        await fetchData();
         setEditingFilename(null); // Reset editing state
         setUpdatedFilename(''); // Clear the input field
       } catch (e) {
@@ -181,9 +185,11 @@ export default function FTPComponent() {
           title: 'Failed to rename file',
           description: errorMsg,
         });
+      } finally {
+        setIsRenaming(false);
       }
     },
-    [loc, toast, updatedFilename]
+    [loc, toast, updatedFilename, fetchData]
   );
 
   const columns = useMemo(
@@ -247,13 +253,20 @@ export default function FTPComponent() {
             >
               <Trash2 className="size-5" />
             </button>
-            {editingFilename === row.original.name && (
+            {editingFilename == row.original.name && (
               <Button
                 onClick={() => handleRename(row.original.name)}
                 size="sm"
                 variant="outline"
+                className="w-14 text-center"
               >
-                Save
+                {isRenaming ? (
+                  <div className="pb-2">
+                    <Spinner muted />
+                  </div>
+                ) : (
+                  'Save'
+                )}
               </Button>
             )}
           </div>
@@ -261,6 +274,7 @@ export default function FTPComponent() {
       },
     ],
     [
+      isRenaming,
       handleDownload,
       handleDelete,
       handleRename,
@@ -275,6 +289,7 @@ export default function FTPComponent() {
         <CardTitle className="flex justify-between gap-2 flex-wrap">
           <span>Files</span>
           <Select
+            disabled={isLoading || isUploading}
             value={loc}
             onValueChange={(value: string) =>
               setLoc(value as 'images' | 'docs')
@@ -294,7 +309,7 @@ export default function FTPComponent() {
           <Input name="loc" className="hidden" value={loc} readOnly />
           <Button
             type="submit"
-            disabled={isUploading}
+            disabled={isUploading || isLoading}
             className="flex items-center gap-2 min-w-20"
           >
             {isUploading ? (
