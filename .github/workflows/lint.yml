@@ -1,0 +1,24 @@
+name: Linting and Husky
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Linting and Formatting
+        run: pnpm run lint-format
+
+      - name: Husky
+        run: pnpm run prepare
