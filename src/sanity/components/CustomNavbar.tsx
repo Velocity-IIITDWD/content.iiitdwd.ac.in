@@ -30,6 +30,8 @@ export function CustomNavbar(props: NavbarProps) {
         description: 'Your site is being deployed!',
       });
     } catch (error: unknown) {
+      setIsDeploying(false);
+      setTimeLeft(0);
       if (error instanceof Error) {
         toast.push({
           status: 'error',
@@ -47,15 +49,19 @@ export function CustomNavbar(props: NavbarProps) {
   };
 
   const handleDeploy = async () => {
-    setIsDeploying(true);
-    await deploySite();
-
     const expectedTime = 60;
 
+    setIsDeploying(true);
     setTimeLeft(expectedTime);
 
-    setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
+    await deploySite();
+
+    const interval = setInterval(() => {
+      if (isDeploying) {
+        setTimeLeft((prev) => prev - 1);
+      } else {
+        clearInterval(interval);
+      }
     }, 1000);
 
     setTimeout(() => {
