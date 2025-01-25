@@ -10,14 +10,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Vercel Action
-        uses: amondnet/vercel-action@v25.2.0
+      
+      - name: Deploy to Vercel
+        uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-args: '--prod'
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
