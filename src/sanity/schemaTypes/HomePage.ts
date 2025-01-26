@@ -30,7 +30,6 @@ export const MainCarouselImage = defineType({
   ],
 });
 
-
 export const ProgramCards = defineType({
   name: 'programCards',
   title: 'Program Cards',
