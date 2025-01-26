@@ -73,13 +73,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     Club,
     NIRF,
     Tender,
-
     AnnualReport,
-
     ContactInf,
     ContactCategory,
     ContactData,
-
     EventInfo,
     Gallery,
     MainCarouselImage,
