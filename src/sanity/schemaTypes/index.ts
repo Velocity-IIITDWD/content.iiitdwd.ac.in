@@ -38,6 +38,10 @@ import {
   ContactData,
   ContactInf,
 } from './generalInfo/ContactInfo';
+import { building_and_works } from './building_and_works';
+import { cgc } from './cgc';
+import { Finance } from './Finance';
+import { student_coordinators } from './student_coordinators';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -73,17 +77,18 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     Club,
     NIRF,
     Tender,
-
     AnnualReport,
-
     ContactInf,
     ContactCategory,
     ContactData,
-
     EventInfo,
     Gallery,
     MainCarouselImage,
     ProgramCards,
     ProgramsType,
+    building_and_works,
+    cgc,
+    Finance,
+    student_coordinators,
   ],
 };

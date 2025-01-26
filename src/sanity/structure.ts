@@ -19,8 +19,8 @@ export const structure: StructureResolver = (S) =>
                 .title('About')
                 .child(S.documentTypeList('about').title('About')),
               S.listItem()
-                .title('Chairperson')
-                .child(S.documentTypeList('chairPerson').title('Chairperson')),
+                .title('Chair Person')
+                .child(S.documentTypeList('chairPerson').title('Chair Person')),
               S.listItem()
                 .title('Contact')
                 .child(S.documentTypeList('contact').title('Contact')),
@@ -35,6 +35,23 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Academics')
             .items([
+              S.listItem()
+                .title('Seat Structure')
+                .child(
+                  S.documentTypeList('seatStructure').title('Seat Structure')
+                ),
+              S.listItem()
+                .title('Links Structure')
+                .child(
+                  S.documentTypeList('linksStructure').title('Links Structure')
+                ),
+              S.listItem()
+                .title('Description Structure')
+                .child(
+                  S.documentTypeList('descriptionStructure').title(
+                    'Description Structure'
+                  )
+                ),
               S.listItem()
                 .title('CSE Academic')
                 .child(S.documentTypeList('cseDetail').title('CSE')),
@@ -83,7 +100,7 @@ export const structure: StructureResolver = (S) =>
                 .child(S.documentTypeList('krcData').title('KRC Data')),
               S.listItem()
                 .title('KRC Data Tel')
-                .child(S.documentTypeList('krcDataTEL').title('KRC Data Tel')),
+                .child(S.documentTypeList('krcDataTel').title('KRC Data Tel')),
               S.listItem()
                 .title('KRC Data Tel Full')
                 .child(
