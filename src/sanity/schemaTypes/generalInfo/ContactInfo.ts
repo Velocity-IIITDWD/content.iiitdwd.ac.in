@@ -37,7 +37,6 @@ export const ContactInf = defineType({
   ],
 });
 
-
 export const ContactCategory = defineType({
   name: 'contactCategory',
   title: 'Contact Category',
@@ -58,7 +57,6 @@ export const ContactCategory = defineType({
     }),
   ],
 });
-
 
 export const ContactData = defineType({
   name: 'contactData',
