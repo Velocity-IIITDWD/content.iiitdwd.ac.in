@@ -82,7 +82,7 @@ export const structure: StructureResolver = (S) =>
                 .title('Events')
                 .child(S.documentTypeList('eventInf').title('Events')),
               S.listItem()
-                .title('Faciliy')
+                .title('Facility')
                 .child(S.documentTypeList('facility').title('Facility')),
               S.listItem()
                 .title('Magazine')
