@@ -1,7 +1,7 @@
 import { defineType, defineField } from 'sanity';
 
 export const krcDataTel = defineType({
-  name: 'krcDataTEL',
+  name: 'krcDataTel',
   title: 'Krc Data TEL(First three)',
   type: 'document',
   fields: [

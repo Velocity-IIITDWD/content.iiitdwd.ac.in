@@ -23,7 +23,7 @@ export const structure: StructureResolver = (S) =>
                 .child(S.documentTypeList('chairPerson').title('chairPerson')),
               S.listItem()
                 .title('Contact')
-                .child(S.documentTypeList('Contact').title('Contact')),
+                .child(S.documentTypeList('contact').title('Contact')),
               S.listItem()
                 .title('Visitor')
                 .child(S.documentTypeList('visitor').title('Visitor')),
@@ -36,8 +36,22 @@ export const structure: StructureResolver = (S) =>
             .title('Academics')
             .items([
               S.listItem()
-                .title('Admission')
-                .child(S.documentTypeList('Admission').title('Admission')),
+                .title('Seat Structure')
+                .child(
+                  S.documentTypeList('seatStructure').title('Seat Structure')
+                ),
+              S.listItem()
+                .title('Links Structure')
+                .child(
+                  S.documentTypeList('linksStructure').title('Links Structure')
+                ),
+              S.listItem()
+                .title('Description Structure')
+                .child(
+                  S.documentTypeList('descriptionStructure').title(
+                    'Description Structure'
+                  )
+                ),
               S.listItem()
                 .title('CSE Academic')
                 .child(S.documentTypeList('cseDetail').title('CSE')),
@@ -76,23 +90,21 @@ export const structure: StructureResolver = (S) =>
             ])
         ),
       S.listItem()
-        .title('')
+        .title('Research and Development')
         .child(
           S.list()
             .title('Research and Development')
             .items([
               S.listItem()
                 .title('KRC Data')
-                .child(S.documentTypeList('krcData').title('KRC Data')),
+                .child(S.documentTypeList('krcData').title('krcData')),
               S.listItem()
                 .title('KRC Data Tel')
-                .child(S.documentTypeList('krcDataTEL').title('KRC Data Tel')),
+                .child(S.documentTypeList('krcDataTel').title('krcDataTel')),
               S.listItem()
                 .title('KRC Data Tel Full')
                 .child(
-                  S.documentTypeList('krcDataTelFull').title(
-                    'KRC Data Tel Full'
-                  )
+                  S.documentTypeList('krcDataTelFull').title('krcDataTelFull')
                 ),
             ])
         ),

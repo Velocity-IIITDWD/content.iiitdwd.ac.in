@@ -41,6 +41,7 @@ import {
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    // advice: please Maintain Consistence in Code In-appropriate Casing will cause app to break when data is used else where
     research,
     advertisement,
     campusData,
@@ -49,6 +50,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     krcDataTel,
     krcDataTelFull,
     Faculty,
+
     senate,
     staff,
     chairPerson,
@@ -65,6 +67,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     eceDetail,
     dsaiDetail,
     Credit,
+
     Jobs,
     Member,
     FacultyAdvisor,
@@ -75,7 +78,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     Tender,
 
     AnnualReport,
-
     ContactInf,
     ContactCategory,
     ContactData,
