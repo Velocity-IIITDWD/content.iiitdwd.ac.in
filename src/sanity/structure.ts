@@ -19,11 +19,11 @@ export const structure: StructureResolver = (S) =>
                 .title('About')
                 .child(S.documentTypeList('about').title('About')),
               S.listItem()
-                .title('Chair Person')
-                .child(S.documentTypeList('chairPerson').title('chairPerson')),
+                .title('Chairperson')
+                .child(S.documentTypeList('chairPerson').title('Chairperson')),
               S.listItem()
                 .title('Contact')
-                .child(S.documentTypeList('Contact').title('Contact')),
+                .child(S.documentTypeList('contact').title('Contact')),
               S.listItem()
                 .title('Visitor')
                 .child(S.documentTypeList('visitor').title('Visitor')),
@@ -35,9 +35,6 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Academics')
             .items([
-              S.listItem()
-                .title('Admission')
-                .child(S.documentTypeList('Admission').title('Admission')),
               S.listItem()
                 .title('CSE Academic')
                 .child(S.documentTypeList('cseDetail').title('CSE')),
@@ -68,7 +65,7 @@ export const structure: StructureResolver = (S) =>
                 .title('Events')
                 .child(S.documentTypeList('eventInf').title('Events')),
               S.listItem()
-                .title('Faciliy')
+                .title('Facility')
                 .child(S.documentTypeList('facility').title('Facility')),
               S.listItem()
                 .title('Magazine')
@@ -76,7 +73,7 @@ export const structure: StructureResolver = (S) =>
             ])
         ),
       S.listItem()
-        .title('')
+        .title('Research and Development')
         .child(
           S.list()
             .title('Research and Development')
