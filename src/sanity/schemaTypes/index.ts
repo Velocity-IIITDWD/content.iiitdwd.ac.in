@@ -1,5 +1,5 @@
 import { type SchemaTypeDefinition } from 'sanity';
-import { About } from './generalInfo/About';
+import { About } from './generalnfo/About';
 import {
   descriptionStructure,
   linksStructure,
@@ -8,14 +8,14 @@ import {
 import { boardOfGovernor } from './governanceAndAdministration/BoardOfGovernor';
 import { cseDetail } from './academics/CSEAcademics';
 import { campusData } from './studentLife/CampusData';
-import { chairPerson } from './generalInfo/ChairPerson';
+import { chairPerson } from './generalnfo/ChairPerson';
 import { Credit } from './Credits';
 import { dsaiDetail } from './academics/DSAIAcademics';
 import { eceDetail } from './academics/ECEAcademics';
 import { facilities } from './studentLife/Facilities';
 import { former } from './newsAndUpdates/Former';
 import { formerBoardOfGovernor } from './newsAndUpdates/FormerBoardOfGovernor';
-import { Jobs } from './generalInfo/Jobs';
+import { Jobs } from './generalnfo/Jobs';
 import { krcData } from './researchDevelopment/KrcData';
 import { krcDataTel } from './researchDevelopment/KrcDataTel';
 import { krcDataTelFull } from './researchDevelopment/KrcDataTelFull';
@@ -25,7 +25,7 @@ import { NIRF } from './reportsAndRankings/Nirf';
 import { research, advertisement } from './researchDevelopment/Research';
 import { senate } from './governanceAndAdministration/Senate';
 import { staff } from './academics/Staff';
-import { visitor } from './generalInfo/Visitor';
+import { visitor } from './generalnfo/Visitor';
 import { Faculty } from './academics/Faculty';
 import { announcementType } from './newsAndUpdates/Announcement';
 import { Tender } from './newsAndUpdates/Tenders';
@@ -37,10 +37,10 @@ import {
   ContactCategory,
   ContactData,
   ContactInf,
-} from './generalInfo/ContactInfo';
+} from './generalnfo/ContactInfo';
 import { building_and_works } from './newsAndUpdates/building_and_works';
 import { cgc } from './cgc/cgc';
-import { Finance } from './generalInfo/Finance';
+import { finance } from './generalnfo/Finance';
 import { student_coordinators } from './studentLife/student_coordinators';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -88,7 +88,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ProgramsType,
     building_and_works,
     cgc,
-    Finance,
+    finance,
     student_coordinators,
   ],
 };

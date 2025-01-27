@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity';
 
-export const Finance = defineType({
+export const finance = defineType({
   title: 'finance',
-  name: 'Finance',
+  name: 'finance',
   type: 'document',
   fields: [
     defineField({

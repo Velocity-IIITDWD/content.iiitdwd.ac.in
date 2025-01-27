@@ -219,17 +219,7 @@ export const structure: StructureResolver = (S) =>
                 ),
             ])
         ),
-      S.listItem()
-        .title('CGC')
-        .child(
-          S.list()
-            .title('CGC')
-            .items([
-              S.listItem()
-                .title('CGC')
-                .child(S.documentTypeList('cgc').title('CGC')),
-            ])
-        ),
+      S.listItem().title('CGC').child(S.documentTypeList('cgc').title('CGC')),
       ...S.documentTypeListItems().filter(schemaFilter),
       S.divider(),
     ]);
