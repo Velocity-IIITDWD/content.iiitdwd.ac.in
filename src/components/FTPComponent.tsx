@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -28,28 +29,40 @@ export default function FTPComponent() {
   const [isRenaming, setIsRenaming] = useState(false);
   const [updatedFilename, setUpdatedFilename] = useState('');
   const [loc, setLoc] = useState<'images' | 'docs'>('images');
-  const [editingFilename, setEditingFilename] = useState<string | null>(null); // Track which file is being edited
+  const [editingFilename, setEditingFilename] = useState<string | null>(null);
 
   const toast = useToast();
 
   const fetchData = useCallback(async () => {
-    if (toast && loc) {
-      try {
-        setIsLoading(true);
-        const result = await GetFiles(loc);
-        setData(result);
-      } catch (err) {
-        console.error(`FTP Error: ${err}`);
-        toast.push({
-          status: 'error',
-          title: "Can't connect to FTP server",
-          description: 'Check logs',
-        });
-      } finally {
-        setIsLoading(false);
-      }
+    try {
+      setIsLoading(true);
+      const result = await GetFiles(loc);
+      setData(result);
+      setAllFiles(result);
+    } catch (err) {
+      console.log(`FTP Error: ${err}`);
+      toast.push({
+        status: 'error',
+        title: "Can't connect to FTP server",
+        description: 'Check logs',
+      });
+    } finally {
+      setIsLoading(false);
     }
-  }, [toast, loc]);
+  }, [loc]);
+
+  const searchFile = (searchQuery: string) => {
+    if (!searchQuery.trim()) {
+      setData(allFiles);
+      return;
+    }
+
+    const filteredFiles = allFiles.filter((file: any) =>
+      file.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setData(filteredFiles);
+  };
 
   // Fetch files on component mount
   useEffect(() => {
@@ -197,7 +210,7 @@ export default function FTPComponent() {
       {
         header: 'Name',
         accessorKey: 'name',
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
         cell: ({ row }: any) => (
           <div className="flex items-center gap-2">
             {editingFilename === row.original.name ? (
@@ -229,7 +242,7 @@ export default function FTPComponent() {
         header: 'Actions',
         accessorKey: 'actions',
         enableSorting: false,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
         cell: ({ row }: any) => (
           <div className="flex gap-2">
             <button
@@ -283,6 +296,8 @@ export default function FTPComponent() {
     ]
   );
 
+  const [allFiles, setAllFiles] = useState<unknown[]>([]);
+
   return (
     <Card className="!rounded-lg">
       <CardHeader>
@@ -295,6 +310,12 @@ export default function FTPComponent() {
               setLoc(value as 'images' | 'docs')
             }
           >
+            <Input
+              type="text"
+              placeholder="Search files..."
+              onChange={(e) => searchFile(e.target.value)}
+              className="w-full md:w-1/3 px-2 py-1 border rounded-md"
+            />
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select location" />
             </SelectTrigger>
