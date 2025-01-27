@@ -95,6 +95,9 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('Jobs')
                 .child(S.documentTypeList('jobs').title('Jobs')),
+              S.listItem()
+                .title('Finance')
+                .child(S.documentTypeList('finance').title('Finance')),
             ])
         ),
       S.listItem()
@@ -135,6 +138,13 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('Former')
                 .child(S.documentTypeList('former').title('Former')),
+              S.listItem()
+                .title('Building And Works')
+                .child(
+                  S.documentTypeList('buildingAndWorks').title(
+                    'Building And Works'
+                  )
+                ),
             ])
         ),
       S.listItem()
@@ -200,6 +210,24 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('Clubs')
                 .child(S.documentTypeList('club').title('Clubs')),
+              S.listItem()
+                .title('Student Coordinators')
+                .child(
+                  S.documentTypeList('student_coordinators').title(
+                    'Student Coordinators'
+                  )
+                ),
+            ])
+        ),
+      S.listItem()
+        .title('CGC')
+        .child(
+          S.list()
+            .title('CGC')
+            .items([
+              S.listItem()
+                .title('CGC')
+                .child(S.documentTypeList('cgc').title('CGC')),
             ])
         ),
       ...S.documentTypeListItems().filter(schemaFilter),

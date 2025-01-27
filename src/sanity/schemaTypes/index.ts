@@ -38,10 +38,10 @@ import {
   ContactData,
   ContactInf,
 } from './generalInfo/ContactInfo';
-import { building_and_works } from './building_and_works';
-import { cgc } from './cgc';
-import { Finance } from './Finance';
-import { student_coordinators } from './student_coordinators';
+import { building_and_works } from './newsAndUpdates/building_and_works';
+import { cgc } from './cgc/cgc';
+import { Finance } from './generalInfo/Finance';
+import { student_coordinators } from './studentLife/student_coordinators';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
