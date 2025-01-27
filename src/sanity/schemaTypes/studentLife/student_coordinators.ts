@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 export const student_coordinators = defineType({
   title: 'student_coordinators',
-  name: 'student_Coordinators',
+  name: 'student_coordinators',
   type: 'document',
   fields: [
     defineField({
