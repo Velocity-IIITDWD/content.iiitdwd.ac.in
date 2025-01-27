@@ -10,26 +10,6 @@ export const structure: StructureResolver = (S) =>
     .title('Content')
     .items([
       S.listItem()
-        .title('General Information')
-        .child(
-          S.list()
-            .title('General Information')
-            .items([
-              S.listItem()
-                .title('About')
-                .child(S.documentTypeList('about').title('About')),
-              S.listItem()
-                .title('Chair Person')
-                .child(S.documentTypeList('chairPerson').title('Chair Person')),
-              S.listItem()
-                .title('Contact')
-                .child(S.documentTypeList('contact').title('Contact')),
-              S.listItem()
-                .title('Visitor')
-                .child(S.documentTypeList('visitor').title('Visitor')),
-            ])
-        ),
-      S.listItem()
         .title('Academics')
         .child(
           S.list()
@@ -70,23 +50,107 @@ export const structure: StructureResolver = (S) =>
             ])
         ),
       S.listItem()
-        .title('Student Life')
+        .title('Home')
         .child(
           S.list()
-            .title('Student Life')
+            .title('Home')
             .items([
               S.listItem()
-                .title('Campus')
-                .child(S.documentTypeList('campusData').title('Campus Data')),
+                .title('Main Carousel Image')
+                .child(
+                  S.documentTypeList('mainCarouselImage').title(
+                    'Main Carousel Image'
+                  )
+                ),
               S.listItem()
-                .title('Events')
-                .child(S.documentTypeList('eventInf').title('Events')),
+                .title('Program Cards')
+                .child(
+                  S.documentTypeList('programCards').title('Program Cards')
+                ),
               S.listItem()
-                .title('Facility')
-                .child(S.documentTypeList('facility').title('Facility')),
+                .title('Program Type')
+                .child(
+                  S.documentTypeList('programsType').title('Program Type')
+                ),
+            ])
+        ),
+      S.listItem()
+        .title('General Information')
+        .child(
+          S.list()
+            .title('General Information')
+            .items([
               S.listItem()
-                .title('Magazine')
-                .child(S.documentTypeList('issues').title('Magazines')),
+                .title('About')
+                .child(S.documentTypeList('about').title('About')),
+              S.listItem()
+                .title('Chair Person')
+                .child(S.documentTypeList('chairPerson').title('Chair Person')),
+              S.listItem()
+                .title('Contact')
+                .child(S.documentTypeList('contact').title('Contact')),
+              S.listItem()
+                .title('Visitor')
+                .child(S.documentTypeList('visitor').title('Visitor')),
+              S.listItem()
+                .title('Jobs')
+                .child(S.documentTypeList('jobs').title('Jobs')),
+            ])
+        ),
+      S.listItem()
+        .title('Governance & Administration')
+        .child(
+          S.list()
+            .title('Governance & Administration')
+            .items([
+              S.listItem()
+                .title('Board Of Governor')
+                .child(
+                  S.documentTypeList('boardOfGovernor').title(
+                    'Board Of Governor'
+                  )
+                ),
+              S.listItem()
+                .title('Gallery')
+                .child(S.documentTypeList('gallery').title('Gallery')),
+              S.listItem()
+                .title('Senate')
+                .child(S.documentTypeList('senate').title('Senate')),
+            ])
+        ),
+      S.listItem()
+        .title('News & Updates')
+        .child(
+          S.list()
+            .title('News & Updates Documents')
+            .items([
+              S.listItem()
+                .title('Announcements')
+                .child(
+                  S.documentTypeList('announcement').title('Announcements')
+                ),
+              S.listItem()
+                .title('Tenders')
+                .child(S.documentTypeList('tender').title('Tenders')),
+              S.listItem()
+                .title('Former')
+                .child(S.documentTypeList('former').title('Former')),
+            ])
+        ),
+      S.listItem()
+        .title('Report and Ranking')
+        .child(
+          S.list()
+            .title('Report and Ranking')
+            .items([
+              S.listItem()
+                .title('Annunal Report')
+                .child(
+                  S.documentTypeList('annualReport').title('Annual Report')
+                ),
+              S.listItem()
+                .title('NIRF')
+                .child(S.documentTypeList('nirf').title('NIRF')),
             ])
         ),
       S.listItem()
@@ -108,22 +172,34 @@ export const structure: StructureResolver = (S) =>
                     'KRC Data Tel Full'
                   )
                 ),
+              S.listItem()
+                .title('Research Profiles')
+                .child(
+                  S.documentTypeList('profiles').title('Research Profiles')
+                ),
             ])
         ),
       S.listItem()
-        .title('News & Updates')
+        .title('Student Life')
         .child(
           S.list()
-            .title('News & Updates Documents')
+            .title('Student Life')
             .items([
               S.listItem()
-                .title('Announcements')
-                .child(
-                  S.documentTypeList('announcement').title('Announcements')
-                ),
+                .title('Campus')
+                .child(S.documentTypeList('campusData').title('Campus Data')),
               S.listItem()
-                .title('Tenders')
-                .child(S.documentTypeList('tender').title('Tenders')),
+                .title('Events')
+                .child(S.documentTypeList('eventInf').title('Events')),
+              S.listItem()
+                .title('Facility')
+                .child(S.documentTypeList('facility').title('Facility')),
+              S.listItem()
+                .title('Magazine')
+                .child(S.documentTypeList('issues').title('Magazines')),
+              S.listItem()
+                .title('Clubs')
+                .child(S.documentTypeList('club').title('Clubs')),
             ])
         ),
       ...S.documentTypeListItems().filter(schemaFilter),

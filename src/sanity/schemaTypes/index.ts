@@ -13,16 +13,16 @@ import { Credit } from './Credits';
 import { dsaiDetail } from './academics/DSAIAcademics';
 import { eceDetail } from './academics/ECEAcademics';
 import { facilities } from './studentLife/Facilities';
-import { former } from './Former';
-import { formerBoardOfGovernor } from './FormerBoardOfGovernor';
-import { Jobs } from './Jobs';
+import { former } from './newsAndUpdates/Former';
+import { formerBoardOfGovernor } from './newsAndUpdates/FormerBoardOfGovernor';
+import { Jobs } from './generalInfo/Jobs';
 import { krcData } from './researchDevelopment/KrcData';
 import { krcDataTel } from './researchDevelopment/KrcDataTel';
 import { krcDataTelFull } from './researchDevelopment/KrcDataTelFull';
 import { FacultyAdvisor, Issues, Member, Team } from './studentLife/Magazine';
-import { Club } from './Members';
+import { Club } from './studentLife/Members';
 import { NIRF } from './reportsAndRankings/Nirf';
-import { research, advertisement } from './Research';
+import { research, advertisement } from './researchDevelopment/Research';
 import { senate } from './governanceAndAdministration/Senate';
 import { staff } from './academics/Staff';
 import { visitor } from './generalInfo/Visitor';
@@ -30,9 +30,9 @@ import { Faculty } from './academics/Faculty';
 import { announcementType } from './newsAndUpdates/Announcement';
 import { Tender } from './newsAndUpdates/Tenders';
 import { AnnualReport } from './reportsAndRankings/Annual_reports';
-import { Gallery } from './Gallery';
+import { Gallery } from './governanceAndAdministration/Gallery';
 import { EventInfo } from './studentLife/Events';
-import { MainCarouselImage, ProgramCards, ProgramsType } from './HomePage';
+import { MainCarouselImage, ProgramCards, ProgramsType } from './home/HomePage';
 import {
   ContactCategory,
   ContactData,
