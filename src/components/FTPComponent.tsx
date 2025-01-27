@@ -24,9 +24,10 @@ import {
 
 export default function FTPComponent() {
   const [data, setData] = useState<unknown[]>([]);
-  const [isUploading, setIsUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRenaming, setIsRenaming] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [allFiles, setAllFiles] = useState<unknown[]>([]);
   const [updatedFilename, setUpdatedFilename] = useState('');
   const [loc, setLoc] = useState<'images' | 'docs'>('images');
   const [editingFilename, setEditingFilename] = useState<string | null>(null);
@@ -49,7 +50,7 @@ export default function FTPComponent() {
     } finally {
       setIsLoading(false);
     }
-  }, [loc]);
+  }, [loc, toast]);
 
   const searchFile = (searchQuery: string) => {
     if (!searchQuery.trim()) {
@@ -295,8 +296,6 @@ export default function FTPComponent() {
       updatedFilename,
     ]
   );
-
-  const [allFiles, setAllFiles] = useState<unknown[]>([]);
 
   return (
     <Card className="!rounded-lg">
