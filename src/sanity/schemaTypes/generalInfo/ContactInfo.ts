@@ -44,12 +44,6 @@ export const ContactCategory = defineType({
   icon: TagIcon,
   fields: [
     defineField({
-      name: 'id',
-      title: 'ID',
-      type: 'number',
-      validation: (Rule) => Rule.required().integer(),
-    }),
-    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',

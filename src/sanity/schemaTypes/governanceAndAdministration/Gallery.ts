@@ -10,9 +10,7 @@ export const Gallery = defineType({
     defineField({
       name: 'url',
       title: 'Image URL',
-      type: 'image',
-      options: { hotspot: true },
-      validation: (Rule) => Rule.required(),
+      type: 'string',
     }),
     defineField({
       name: 'caption',
