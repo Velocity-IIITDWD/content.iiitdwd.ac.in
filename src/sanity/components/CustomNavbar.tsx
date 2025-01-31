@@ -119,12 +119,12 @@ function FTPDialogTrigger() {
     <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger asChild>
         <button className="flex items-center justify-center px-4 py-1 text-white bg-slate-800 rounded-md transition duration-200 hover:bg-slate-700">
-          Upload Files
+          File management
         </button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-none sm:max-w-full md:max-w-[90vw] z-[1000] border-2 border-zinc-500 max-h-[95vh] overflow-auto">
         <DialogHeader>
-          <DialogTitle>Upload Files via FTP</DialogTitle>
+          <DialogTitle>File management via FTP</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <FTPComponent />
