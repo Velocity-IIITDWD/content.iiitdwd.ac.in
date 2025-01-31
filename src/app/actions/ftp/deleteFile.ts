@@ -11,12 +11,14 @@ export async function deleteFile({
 }) {
   const client = await connectToFTP(loc);
   try {
-    await client.remove(filename);
-    console.log(`File ${filename} deleted successfully.`);
+    await client.ensureDir('/trash');
+    await client.rename(`/${filename}`, `/trash/${filename}`);
+
+    console.log(`File ${filename} moved to /trash successfully.`);
   } catch (e) {
     const errorMsg = (e as { message: string })?.message || '';
-    console.error('Error deleting file:', e);
-    throw new Error(`Failed to delete file: ${errorMsg}`);
+    console.error('Error moving file to trash:', e);
+    throw new Error(`Failed to move file to trash: ${errorMsg}`);
   } finally {
     client.close();
   }

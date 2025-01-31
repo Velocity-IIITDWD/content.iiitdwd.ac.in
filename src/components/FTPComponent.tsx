@@ -2,13 +2,14 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Download, Edit3Icon, Trash2 } from 'lucide-react';
+import { Download, Edit3Icon, Trash2, ArchiveRestore } from 'lucide-react';
 
 import { deleteFile } from '@/app/actions/ftp/deleteFile';
 import { downloadFile } from '@/app/actions/ftp/downloadFile';
 import { GetFiles } from '@/app/actions/ftp/getFiles';
 import { renameFile } from '@/app/actions/ftp/renameFile';
 import { UploadFile } from '@/app/actions/ftp/uploadFile';
+import { getRecentlyDeletedFiles } from '@/app/actions/ftp/getRecentlyDeleted';
 import { ReactTable } from '@/components/ReactTable';
 import { Card, Spinner, useToast } from '@sanity/ui';
 import { Button } from '@/components/ui/button';
@@ -21,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { restoreFile } from '@/app/actions/ftp/restoreFile';
 
 export default function FTPComponent() {
   const [data, setData] = useState<unknown[]>([]);
@@ -31,6 +33,7 @@ export default function FTPComponent() {
   const [updatedFilename, setUpdatedFilename] = useState('');
   const [loc, setLoc] = useState<'images' | 'docs'>('images');
   const [editingFilename, setEditingFilename] = useState<string | null>(null);
+  const [isViewingDeleted, setIsViewingDeleted] = useState(false);
 
   const toast = useToast();
 
@@ -38,7 +41,10 @@ export default function FTPComponent() {
     try {
       setIsLoading(true);
       const result = await GetFiles(loc);
-      setData(result);
+      const filteredResult = result.filter(
+        (file: any) => !file.name.includes('trash')
+      );
+      setData(filteredResult);
       setAllFiles(result);
     } catch (err) {
       console.log(`FTP Error: ${err}`);
@@ -72,10 +78,10 @@ export default function FTPComponent() {
 
   const handleUpload = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault(); // Prevent the default form submission
+      event.preventDefault();
       setIsUploading(true);
 
-      const formData = new FormData(event.currentTarget); // Get form data
+      const formData = new FormData(event.currentTarget);
       const file = formData.get('file') as File;
 
       if (!file?.name) {
@@ -87,6 +93,21 @@ export default function FTPComponent() {
         setIsUploading(false);
         return;
       }
+      const fileExists = allFiles.some(
+        (existingFile: any) =>
+          existingFile.name.toLowerCase() === file.name.toLowerCase()
+      );
+
+      if (fileExists) {
+        toast.push({
+          status: 'error',
+          title: 'File already exists',
+          description:
+            'A file with this name already exists. Please rename the file and try again.',
+        });
+        setIsUploading(false);
+        return;
+      }
 
       try {
         await UploadFile({ formData, loc });
@@ -94,7 +115,6 @@ export default function FTPComponent() {
           status: 'success',
           title: 'File uploaded successfully.',
         });
-        // Refresh the file list after upload
         await fetchData();
       } catch (err: unknown) {
         toast.push({
@@ -147,6 +167,7 @@ export default function FTPComponent() {
 
   const handleDelete = useCallback(
     async (filename: string) => {
+      setIsLoading(true);
       try {
         await deleteFile({ filename, loc });
         toast.push({
@@ -161,6 +182,32 @@ export default function FTPComponent() {
           title: 'Failed to delete file',
           description: errorMsg,
         });
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [loc, toast, fetchData]
+  );
+
+  const handleRestore = useCallback(
+    async (filename: string) => {
+      setIsLoading(true);
+      try {
+        await restoreFile({ filename, loc });
+        toast.push({
+          status: 'success',
+          title: `File ${filename} restored successfully.`,
+        });
+        await handleRecentlyDeleted();
+      } catch (e) {
+        const errorMsg = (e as { message: string })?.message || '';
+        toast.push({
+          status: 'error',
+          title: 'Failed to restore file',
+          description: errorMsg,
+        });
+      } finally {
+        setIsLoading(false);
       }
     },
     [loc, toast, fetchData]
@@ -205,6 +252,32 @@ export default function FTPComponent() {
     },
     [loc, toast, updatedFilename, fetchData]
   );
+
+  const handleRecentlyDeleted = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      if (!isViewingDeleted) {
+        const deletedFiles = await getRecentlyDeletedFiles(loc);
+        setData(deletedFiles);
+        setIsViewingDeleted(true);
+        toast.push({
+          status: 'success',
+          title: 'Showing recently deleted files',
+        });
+      } else {
+        await fetchData(); // Return to normal view
+        setIsViewingDeleted(false);
+      }
+    } catch (err) {
+      toast.push({
+        status: 'error',
+        title: 'Failed to fetch deleted files',
+        description: (err as Error).message,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, [loc, toast, isViewingDeleted, fetchData, handleRestore]);
 
   const columns = useMemo(
     () => [
@@ -261,12 +334,21 @@ export default function FTPComponent() {
             >
               <Edit3Icon className="size-5" />
             </button>
-            <button
-              onClick={() => handleDelete(row.original.name)}
-              className="text-zinc-400 hover:text-zinc-600 transition-colors"
-            >
-              <Trash2 className="size-5" />
-            </button>
+            {isViewingDeleted ? (
+              <button
+                onClick={() => handleRestore(row.original.name)}
+                className="text-zinc-400 hover:text-zinc-600 transition-colors"
+              >
+                <ArchiveRestore className="size-5" />
+              </button>
+            ) : (
+              <button
+                onClick={() => handleDelete(row.original.name)}
+                className="text-zinc-400 hover:text-zinc-600 transition-colors"
+              >
+                <Trash2 className="size-5" />
+              </button>
+            )}
             {editingFilename == row.original.name && (
               <Button
                 onClick={() => handleRename(row.original.name)}
@@ -292,8 +374,10 @@ export default function FTPComponent() {
       handleDownload,
       handleDelete,
       handleRename,
+      handleRestore,
       editingFilename,
       updatedFilename,
+      isViewingDeleted,
     ]
   );
 
@@ -336,6 +420,19 @@ export default function FTPComponent() {
               <Spinner muted className="!size-5" />
             ) : (
               <span>Upload</span>
+            )}
+          </Button>
+          <Button
+            onClick={handleRecentlyDeleted}
+            disabled={isUploading || isLoading}
+            className="flex items-center gap-2 min-w-20"
+          >
+            {isUploading ? (
+              <Spinner muted className="!size-5" />
+            ) : (
+              <span>
+                {isViewingDeleted ? 'Show All Files' : 'Recently Deleted'}
+              </span>
             )}
           </Button>
         </form>
