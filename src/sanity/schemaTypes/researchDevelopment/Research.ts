@@ -45,8 +45,8 @@ export const research = defineType({
   ],
 });
 
-export const advertisement = defineType({
-  name: 'advertisement',
+export const researchAdvertisement = defineType({
+  name: 'research_advertisement',
   type: 'document',
   title: 'Research Advertisement',
   fields: [

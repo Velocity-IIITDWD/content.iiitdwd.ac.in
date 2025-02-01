@@ -22,7 +22,10 @@ import { krcDataTelFull } from './researchDevelopment/KrcDataTelFull';
 import { FacultyAdvisor, Issues, Member, Team } from './studentLife/Magazine';
 import { Club } from './studentLife/Members';
 import { NIRF } from './reportsAndRankings/Nirf';
-import { research, advertisement } from './researchDevelopment/Research';
+import {
+  research,
+  researchAdvertisement,
+} from './researchDevelopment/Research';
 import { senate } from './governanceAndAdministration/Senate';
 import { staff } from './academics/Staff';
 import { visitor } from './generalInfo/Visitor';
@@ -46,7 +49,7 @@ import { student_coordinators } from './studentLife/student_coordinators';
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     research,
-    advertisement,
+    researchAdvertisement,
     campusData,
     facilities,
     krcData,

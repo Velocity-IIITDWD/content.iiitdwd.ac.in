@@ -136,8 +136,10 @@ export const structure: StructureResolver = (S) =>
                 .title('Tenders')
                 .child(S.documentTypeList('tender').title('Tenders')),
               S.listItem()
-                .title('Former')
-                .child(S.documentTypeList('former').title('Former')),
+                .title('Former Director')
+                .child(
+                  S.documentTypeList('formerDirector').title('Former Director')
+                ),
               S.listItem()
                 .title('Building And Works')
                 .child(

@@ -2,8 +2,8 @@ import { defineField, defineType } from 'sanity';
 import { UsersIcon } from 'lucide-react';
 
 export const former = defineType({
-  name: 'former',
-  title: 'Former',
+  name: 'formerDirector',
+  title: 'Former Director',
   type: 'document',
   icon: UsersIcon,
   fields: [
