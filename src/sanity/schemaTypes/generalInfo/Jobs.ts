@@ -2,7 +2,7 @@ import { ContactRound } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 
 export const Jobs = defineType({
-  name: 'jobs',
+  name: 'job',
   title: 'Jobs',
   type: 'document',
   icon: ContactRound,

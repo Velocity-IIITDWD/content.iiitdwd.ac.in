@@ -94,7 +94,7 @@ export const structure: StructureResolver = (S) =>
                 .child(S.documentTypeList('visitor').title('Visitor')),
               S.listItem()
                 .title('Jobs')
-                .child(S.documentTypeList('jobs').title('Jobs')),
+                .child(S.documentTypeList('job').title('Jobs')),
               S.listItem()
                 .title('Finance')
                 .child(S.documentTypeList('finance').title('Finance')),
@@ -156,9 +156,9 @@ export const structure: StructureResolver = (S) =>
             .title('Report and Ranking')
             .items([
               S.listItem()
-                .title('Annunal Report')
+                .title('Annual Reports')
                 .child(
-                  S.documentTypeList('annualReport').title('Annual Report')
+                  S.documentTypeList('annualReport').title('Annual Reports')
                 ),
               S.listItem()
                 .title('NIRF')

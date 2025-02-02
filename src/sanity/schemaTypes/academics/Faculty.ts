@@ -35,7 +35,7 @@ export const Faculty = defineType({
             defineField({
               name: 'profile_pdf',
               title: 'Profile or Resume Link',
-              type: 'url',
+              type: 'string',
             }),
           ],
         }),
@@ -45,7 +45,7 @@ export const Faculty = defineType({
           fields: [
             defineField({
               name: 'photo',
-              type: 'url',
+              type: 'string',
               title: 'Photo',
               validation: (Rule) =>
                 Rule.required().error('An image is required'),
