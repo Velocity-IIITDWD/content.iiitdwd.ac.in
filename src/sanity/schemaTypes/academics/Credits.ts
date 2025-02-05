@@ -1,6 +1,6 @@
 import { ComputerIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
-import CreditIdInput from '../components/creditIdInput';
+import CreditIdInput from '../../components/creditIdInput';
 
 export const Credit = defineType({
   name: 'Credit',

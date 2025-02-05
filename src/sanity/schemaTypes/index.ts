@@ -9,12 +9,12 @@ import { boardOfGovernor } from './governanceAndAdministration/BoardOfGovernor';
 import { cseDetail } from './academics/CSEAcademics';
 import { campusData } from './studentLife/CampusData';
 import { chairPerson } from './generalInfo/ChairPerson';
-import { Credit } from './Credits';
+import { Credit } from './academics/Credits';
 import { dsaiDetail } from './academics/DSAIAcademics';
 import { eceDetail } from './academics/ECEAcademics';
 import { facilities } from './studentLife/Facilities';
-import { former } from './newsAndUpdates/Former';
-import { formerBoardOfGovernor } from './newsAndUpdates/FormerBoardOfGovernor';
+import { former } from './generalInfo/Former';
+import { formerBoardOfGovernor } from './governanceAndAdministration/FormerBoardOfGovernor';
 import { Jobs } from './generalInfo/Jobs';
 import { krcData } from './researchDevelopment/KrcData';
 import { krcDataTel } from './researchDevelopment/KrcDataTel';
@@ -43,7 +43,7 @@ import {
 } from './generalInfo/ContactInfo';
 import { building_and_works } from './newsAndUpdates/building_and_works';
 import { cgc } from './cgc/cgc';
-import { finance } from './generalInfo/Finance';
+import { finance } from './governanceAndAdministration/Finance';
 import { student_coordinators } from './studentLife/student_coordinators';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
