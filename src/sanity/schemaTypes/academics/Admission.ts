@@ -49,11 +49,6 @@ export const linksStructure = defineType({
           type: 'object',
           fields: [
             {
-              name: 'id',
-              title: 'ID',
-              type: 'number',
-            },
-            {
               name: 'link',
               title: 'Link',
               type: 'string',

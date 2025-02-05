@@ -2,7 +2,7 @@ import { CalendarIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 
 export const EventInfo = defineType({
-  name: 'eventInf',
+  name: 'event',
   title: 'Event Information',
   type: 'document',
   icon: CalendarIcon,

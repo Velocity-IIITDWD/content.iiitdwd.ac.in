@@ -187,7 +187,9 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('Research Profiles')
                 .child(
-                  S.documentTypeList('profiles').title('Research Profiles')
+                  S.documentTypeList('researchProfiles').title(
+                    'Research Profiles'
+                  )
                 ),
             ])
         ),
@@ -202,7 +204,7 @@ export const structure: StructureResolver = (S) =>
                 .child(S.documentTypeList('campusData').title('Campus Data')),
               S.listItem()
                 .title('Events')
-                .child(S.documentTypeList('eventInf').title('Events')),
+                .child(S.documentTypeList('event').title('Events')),
               S.listItem()
                 .title('Facility')
                 .child(S.documentTypeList('facility').title('Facility')),

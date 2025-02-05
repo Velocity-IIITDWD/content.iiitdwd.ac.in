@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 export const research = defineType({
   title: 'Research Profiles',
-  name: 'profiles',
+  name: 'researchProfiles',
   type: 'document',
   fields: [
     defineField({
