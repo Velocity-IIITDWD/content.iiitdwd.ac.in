@@ -13,21 +13,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Switch } from '@/components/ui/switch';
 import FTPComponent from '@/components/FTPComponent';
 
 export function CustomNavbar(props: NavbarProps) {
   const { renderDefault } = props;
   const [isDeploying, setIsDeploying] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [isBetaDeploy, setIsBetaDeploy] = useState(false);
   const toast = useToast();
 
   const deploySite = async () => {
     try {
-      await dispatchWorkflow();
+      await dispatchWorkflow({ isBetaDeploy });
       toast.push({
         status: 'success',
         title: 'Deployment Triggered',
-        description: 'Your site is being deployed!',
+        description: `Deploying to ${isBetaDeploy ? 'Beta' : 'Production'} environment`,
       });
     } catch (error: unknown) {
       setIsDeploying(false);
@@ -79,6 +81,21 @@ export function CustomNavbar(props: NavbarProps) {
   return (
     <div>
       <div className="flex justify-center items-center gap-3 p-2 bg-slate-950">
+        <div className="flex items-center gap-2">
+          <span
+            className={`text-sm w-[70px] text-right ${!isBetaDeploy ? 'text-white font-bold' : 'text-gray-400'}`}
+          >
+            Production
+          </span>
+          <div className="w-[40px] flex justify-center">
+            <Switch checked={isBetaDeploy} onCheckedChange={setIsBetaDeploy} />
+          </div>
+          <span
+            className={`text-sm w-[40px] ${isBetaDeploy ? 'text-white font-semibold' : 'text-gray-100'}`}
+          >
+            Beta
+          </span>
+        </div>
         <FTPDialogTrigger />
         <button
           onClick={handleDeploy}
@@ -96,9 +113,10 @@ export function CustomNavbar(props: NavbarProps) {
               <span className="ml-2">Deploying... {timeLeft} sec</span>
             </>
           ) : (
-            'Deploy'
+            `Deploy to ${isBetaDeploy ? 'Beta Server' : 'Production'}`
           )}
         </button>
+
         <button
           onClick={checkStatus}
           className="flex items-center justify-center bg-slate-400 rounded-full transition duration-200 size-5"

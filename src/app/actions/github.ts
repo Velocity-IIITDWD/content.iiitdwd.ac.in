@@ -6,9 +6,14 @@ type RunType = {
   id: string;
 };
 
-export async function dispatchWorkflow() {
+export async function dispatchWorkflow({
+  isBetaDeploy,
+}: {
+  isBetaDeploy: boolean;
+}) {
   const repoURL = process.env.DEPLOY_REPO_URL;
-  const workflow = process.env.DEPLOY_WORKFLOW;
+  const productionWorkflow = process.env.DEPLOY_WORKFLOW;
+  const betaWorkflow = process.env.DEPLOY_BETA_WORKFLOW;
   const ref = process.env.DEPLOY_REF;
 
   try {
@@ -16,7 +21,14 @@ export async function dispatchWorkflow() {
       auth: process.env.GITHUB_PAT,
     });
 
-    // Get all workflow runs to check the uncompleted ones
+    const workflow = isBetaDeploy ? betaWorkflow : productionWorkflow;
+
+    if (!workflow) {
+      throw new Error(
+        `No ${isBetaDeploy ? 'beta' : 'production'} workflow configured`
+      );
+    }
+
     const { data: runs } = await octokit.request(
       `GET /repos/${repoURL}/actions/workflows/${workflow}/runs`,
       {
@@ -49,7 +61,9 @@ export async function dispatchWorkflow() {
       { ref }
     );
 
-    console.log('Dispatched new workflow run');
+    console.log(
+      `Dispatched new ${isBetaDeploy ? 'beta' : 'production'} workflow run`
+    );
   } catch (error) {
     throw error;
   }
