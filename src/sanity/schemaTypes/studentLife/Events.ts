@@ -1,3 +1,4 @@
+import { client } from '@/sanity/lib/client';
 import { CalendarIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 
@@ -11,55 +12,85 @@ export const EventInfo = defineType({
       name: 'id',
       title: 'ID',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((id, context) => {
+          if (!id) return 'ID is required';
+          if (!context?.document) return true;
+
+          const { _type, _id } = context.document;
+
+          return client
+            .fetch(
+              `*[_type == $type && id == $id && !(_id in [$currentId, "drafts." + $currentId])][0]`,
+              {
+                type: _type,
+                id,
+                currentId: _id.replace(/^drafts\./, ''),
+              }
+            )
+            .then((existing) => (existing ? 'ID must be unique' : true))
+            .catch(() => 'Error checking uniqueness');
+        }),
     }),
     defineField({
       name: 'href',
-      title: 'Href',
-      type: 'url',
+      title: 'Image thumbnail path (/images/{img.png})',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'text',
-      title: 'Text',
+      title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'timestamp',
-      title: 'Timestamp',
-      type: 'datetime',
-      validation: (Rule) => Rule.required(),
+      title: 'Timestamp (dd-mm-yyyy)',
+      type: 'string',
+      validation: (Rule) =>
+        Rule.required().regex(
+          /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\d{4})$/,
+          { name: 'date format', invert: false }
+        ),
     }),
     defineField({
       name: 'allImage',
       title: 'All Images',
       type: 'array',
-      of: [{ type: 'image', options: { hotspot: true } }],
+      of: [{ type: 'string' }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'details',
       title: 'Details',
       type: 'object',
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'startDate',
-          title: 'Start Date',
-          type: 'datetime',
-          validation: (Rule) => Rule.required(),
+          title: 'Start Date (dd-mm-yyyy)',
+          type: 'string',
+          validation: (Rule) =>
+            Rule.required().regex(
+              /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\d{4})$/,
+              { name: 'date format', invert: false }
+            ),
         }),
         defineField({
           name: 'endDate',
-          title: 'End Date',
-          type: 'datetime',
-          validation: (Rule) => Rule.required(),
+          title: 'End Date (dd-mm-yyyy)',
+          type: 'string',
+          validation: (Rule) =>
+            Rule.required().regex(
+              /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\d{4})$/,
+              { name: 'date format', invert: false }
+            ),
         }),
         defineField({
           name: 'ticketPrice',
           title: 'Ticket Price',
           type: 'string',
-          validation: (Rule) => Rule.required(),
         }),
       ],
     }),
@@ -67,6 +98,7 @@ export const EventInfo = defineType({
       name: 'venue',
       title: 'Venue',
       type: 'object',
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'place',
@@ -78,7 +110,6 @@ export const EventInfo = defineType({
           name: 'street',
           title: 'Street',
           type: 'string',
-          validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'city',
@@ -92,6 +123,7 @@ export const EventInfo = defineType({
       name: 'organiser',
       title: 'Organiser',
       type: 'object',
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'name',
@@ -103,13 +135,11 @@ export const EventInfo = defineType({
           name: 'designation',
           title: 'Designation',
           type: 'string',
-          validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'contact',
           title: 'Contact',
           type: 'string',
-          validation: (Rule) => Rule.required(),
         }),
       ],
     }),
