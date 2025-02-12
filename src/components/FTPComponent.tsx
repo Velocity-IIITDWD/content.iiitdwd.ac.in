@@ -99,35 +99,48 @@ export default function FTPComponent() {
       );
 
       if (fileExists) {
-        toast.push({
-          status: 'error',
-          title: 'File already exists',
-          description:
-            'A file with this name already exists. Please rename the file and try again.',
-        });
-        setIsUploading(false);
-        return;
-      }
-
-      try {
-        await UploadFile({ formData, loc });
-        toast.push({
-          status: 'success',
-          title: 'File uploaded successfully.',
-        });
-        await fetchData();
-      } catch (err: unknown) {
-        toast.push({
-          status: 'error',
-          title: 'Error Uploading to FTP server',
-          description: err as string,
-        });
-      } finally {
-        setIsUploading(false);
+        const shouldOverwrite = confirm(
+          'A file with this name already exists. Do you want to overwrite the contents?'
+        );
+        if (shouldOverwrite) {
+          await uploadFile(formData);
+        } else {
+          setIsUploading(false);
+        }
+      } else {
+        await uploadFile(formData);
       }
     },
     [loc, toast, fetchData]
   );
+
+  const showToast = (
+    status: 'error' | 'warning' | 'success' | 'info' | undefined,
+    title: string,
+    description: string
+  ) => {
+    toast.push({
+      status,
+      title,
+      description,
+    });
+  };
+
+  const uploadFile = async (formData: FormData) => {
+    try {
+      await UploadFile({ formData, loc });
+      showToast('success', 'File uploaded successfully.', '');
+      await fetchData();
+    } catch (err: unknown) {
+      showToast(
+        'error',
+        'Error Uploading to FTP server',
+        (err as string) || 'Unknown error'
+      );
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const handleDownload = useCallback(
     async (filename: string) => {
