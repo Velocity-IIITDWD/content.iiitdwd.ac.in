@@ -13,7 +13,7 @@ export const MainCarouselImage = defineType({
     defineField({
       name: 'url',
       title: 'Image URL',
-      type: 'url',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -25,7 +25,7 @@ export const MainCarouselImage = defineType({
     defineField({
       name: 'link',
       title: 'Link',
-      type: 'url',
+      type: 'string',
     }),
   ],
 });
