@@ -93,8 +93,8 @@ export const structure: StructureResolver = (S) =>
                 .title('Visitor')
                 .child(S.documentTypeList('visitor').title('Visitor')),
               S.listItem()
-                .title('Jobs')
-                .child(S.documentTypeList('job').title('Jobs')),
+                .title('Careers')
+                .child(S.documentTypeList('job').title('Careers')),
               S.listItem()
                 .title('Finance')
                 .child(S.documentTypeList('finance').title('Finance')),
