@@ -149,5 +149,19 @@ export const EventInfo = defineType({
       type: 'text',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'type',
+      title: 'Event Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Club', value: 'club' },
+          { title: 'Institute', value: 'institute' },
+        ],
+        layout: 'radio', // Optional: Makes selection easier in the Sanity Studio
+      },
+      initialValue: 'college', // Default to 'college'
+      validation: (Rule) => Rule.required(), // Ensure it's always set
+    }),
   ],
 });
