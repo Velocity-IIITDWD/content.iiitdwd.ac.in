@@ -23,6 +23,12 @@ export const announcementType = defineType({
       type: 'boolean',
     }),
     defineField({
+      name: 'isAchievement',
+      title: 'isAchievement',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'date',
       title: 'Date',
       type: 'string',
