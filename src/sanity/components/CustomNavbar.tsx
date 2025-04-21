@@ -73,7 +73,7 @@ export function CustomNavbar(props: NavbarProps) {
 
   const checkStatus = () => {
     redirect(
-      'https://github.com/velocity-iiitdwd/iiitdwd.ac.in/actions/',
+      'https://github.com/velocity-iiitdwd/iiitdwd_2025/actions/',
       RedirectType.push
     );
   };
